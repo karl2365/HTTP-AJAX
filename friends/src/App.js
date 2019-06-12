@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import Friends from './components/Friends';
 
 class App extends React.Component {
 
@@ -15,8 +16,8 @@ class App extends React.Component {
     axios
       .get('http://localhost:5000/friends')
       .then(res => {
-        console.log(res);
-        this.setState({ friends: res.friends });
+        console.log(res.data);
+        this.setState({ friends: res.data });
       })
       .catch(err => {
         console.log(err);
@@ -29,7 +30,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-          fuck
+          <Friends friends={this.state.friends} key={this.state.friends.id} />
       </div>
     );
   }
